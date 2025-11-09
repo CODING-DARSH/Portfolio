@@ -22,14 +22,14 @@ export default function Certificates() {
       issuer: "Royal Technosoft Pvt. Ltd.",
       link: "https://certopus.s3.ap-south-1.amazonaws.com/images/1ccbfa519e9a491296e39a223dcf70f3.jpeg",
       category: "Programming",
-      level: "Intermediate"
+      level: "Max"
     },
     {
       title: "HTML Fundamentals",
       issuer: "Royal Technosoft Pvt. Ltd.",
       link: "https://certopus.s3.ap-south-1.amazonaws.com/images/5ccd3541e5e64e9fa8e33feceee9b8d5.jpeg",
       category: "Web Development",
-      level: "Fundamentals"
+      level: "Max"
     },
   ]
 
