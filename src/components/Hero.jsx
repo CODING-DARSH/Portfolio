@@ -270,7 +270,7 @@ export default function Hero() {
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <img
-                    src="/src/assets/darsh.jpg"
+                    src="/darsh.jpg"
                     alt="Darsh Vithlani"
                     className="w-full h-full object-cover"
                   />
