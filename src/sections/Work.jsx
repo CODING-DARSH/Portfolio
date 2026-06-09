@@ -14,7 +14,7 @@ const projects = [
       { v: '99.6% Top-3', l: 'Cold-start accuracy' },
     ],
     year: '2026',
-    github: 'https://github.com/CODING-DARSH/Nourish_VLM',
+    github: 'https://github.com/CODING-DARSH/Nara',
     accent: '#1d1d1f',
   },
   {
@@ -44,7 +44,7 @@ const projects = [
       { v: '75K+', l: 'Food images' },
     ],
     year: '2026',
-    github: 'https://github.com/CODING-DARSH/Nara',
+    github: 'https://github.com/CODING-DARSH/Nourish_VLM',
     accent: '#1d1d1f',
   },
 ]
