@@ -88,6 +88,29 @@ export default function Navbar() {
                 {l.label}
               </button>
             ))}
+            <a
+              href="/resume.pdf"
+              download="Darsh_Vithlani_Resume.pdf"
+              style={{
+                padding: '6px 14px',
+                background: '#1d1d1f',
+                color: '#fff',
+                borderRadius: '980px',
+                fontSize: '13px',
+                fontWeight: '500',
+                transition: 'background 0.2s',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '5px',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = '#000'}
+              onMouseLeave={e => e.currentTarget.style.background = '#1d1d1f'}
+            >
+              Resume
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                <path d="M5.5 1v6M2.5 4.5l3 3 3-3M1 9.5h9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
           </div>
 
           {/* Mobile hamburger */}
@@ -142,6 +165,19 @@ export default function Navbar() {
                 {l.label}
               </button>
             ))}
+            <a
+              href="/resume.pdf"
+              download="Darsh_Vithlani_Resume.pdf"
+              style={{
+                display: 'block',
+                padding: '14px 22px',
+                fontSize: '17px',
+                color: '#0071e3',
+                fontWeight: '500',
+              }}
+            >
+              Download Resume ↓
+            </a>
           </motion.div>
         )}
       </AnimatePresence>

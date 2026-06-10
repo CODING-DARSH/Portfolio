@@ -45,7 +45,7 @@ export default function Contact() {
             Open to ML engineering roles, research collaborations, and interesting problems worth solving.
           </p>
 
-          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '64px' }}>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
             <a
               href="mailto:darshvit20@gmail.com"
               style={{
@@ -101,6 +101,33 @@ export default function Contact() {
               GitHub
             </a>
           </div>
+
+          {/* Resume download */}
+          <a
+            href="/resume.pdf"
+            download="Darsh_Vithlani_Resume.pdf"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '14px 28px',
+              background: 'transparent',
+              color: '#1d1d1f',
+              border: '1px solid rgba(0,0,0,0.15)',
+              borderRadius: '980px',
+              fontSize: '15px',
+              fontWeight: '500',
+              marginBottom: '64px',
+              transition: 'border-color 0.2s, background 0.2s',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.4)'; e.currentTarget.style.background = '#f5f5f7' }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.15)'; e.currentTarget.style.background = 'transparent' }}
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 1v8M4 6.5l3 3 3-3M1.5 12.5h11" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            Download Resume
+          </a>
 
           <p style={{ fontSize: '13px', color: '#86868b' }}>
             Darsh Vithlani · Bengaluru, India · {new Date().getFullYear()}
