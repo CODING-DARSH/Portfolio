@@ -1,5 +1,83 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+
+const WORDS = ['Precise.', 'Scalable.', 'Production-ready.', 'Yours.']
+const TYPE_SPEED = 60
+const DELETE_SPEED = 35
+const PAUSE_AFTER_TYPE = 1600
+const PAUSE_AFTER_DELETE = 400
+
+function Typewriter() {
+  const [display, setDisplay] = useState('')
+  const [wordIndex, setWordIndex] = useState(0)
+  const [phase, setPhase] = useState('typing') // typing | pausing | deleting | waiting
+  const [charIndex, setCharIndex] = useState(0)
+  const [blink, setBlink] = useState(true)
+
+  // cursor blink
+  useEffect(() => {
+    const id = setInterval(() => setBlink(b => !b), 500)
+    return () => clearInterval(id)
+  }, [])
+
+  useEffect(() => {
+    const word = WORDS[wordIndex]
+    const isYours = word === 'Yours.'
+
+    if (phase === 'typing') {
+      if (charIndex < word.length) {
+        const id = setTimeout(() => {
+          setDisplay(word.slice(0, charIndex + 1))
+          setCharIndex(c => c + 1)
+        }, TYPE_SPEED)
+        return () => clearTimeout(id)
+      } else {
+        const id = setTimeout(() => setPhase('deleting'), PAUSE_AFTER_TYPE)
+        return () => clearTimeout(id)
+      }
+    }
+
+    if (phase === 'deleting') {
+      if (charIndex > 0) {
+        const id = setTimeout(() => {
+          setDisplay(word.slice(0, charIndex - 1))
+          setCharIndex(c => c - 1)
+        }, DELETE_SPEED)
+        return () => clearTimeout(id)
+      } else {
+        const id = setTimeout(() => {
+          setWordIndex(i => (i + 1) % WORDS.length)
+          setPhase('typing')
+        }, PAUSE_AFTER_DELETE)
+        return () => clearTimeout(id)
+      }
+    }
+  }, [phase, charIndex, wordIndex])
+
+  const currentWord = WORDS[wordIndex]
+  const isYours = display === 'Yours.' || (currentWord === 'Yours.' && display.length > 0 && phase !== 'deleting')
+
+  return (
+    <span style={{
+      color: isYours ? '#0071e3' : '#1d1d1f',
+      transition: 'color 0.3s ease',
+      fontWeight: '700',
+    }}>
+      {display}
+      <span style={{
+        display: 'inline-block',
+        width: '3px',
+        height: '0.85em',
+        background: isYours ? '#0071e3' : '#1d1d1f',
+        marginLeft: '3px',
+        verticalAlign: 'middle',
+        opacity: blink ? 1 : 0,
+        transition: 'background 0.3s ease',
+        borderRadius: '1px',
+      }} />
+    </span>
+  )
+}
 
 export default function Hero() {
   const ref = useRef(null)
@@ -23,7 +101,7 @@ export default function Hero() {
       }}
     >
       <motion.div
-        style={{ y, opacity, textAlign: 'center', maxWidth: '780px' }}
+        style={{ y, opacity, textAlign: 'center', maxWidth: '820px' }}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
@@ -36,7 +114,7 @@ export default function Hero() {
             fontSize: '17px',
             color: '#86868b',
             fontWeight: '400',
-            marginBottom: '20px',
+            marginBottom: '24px',
             letterSpacing: '0.02em',
           }}
         >
@@ -53,38 +131,23 @@ export default function Hero() {
             lineHeight: '1.05',
             letterSpacing: '-0.03em',
             color: '#1d1d1f',
-            marginBottom: '28px',
+            marginBottom: '48px',
           }}
         >
           Building AI
           <br />
-          <span style={{ color: '#86868b', fontWeight: '300' }}>that scales.</span>
+          that's{' '}
+          <Typewriter />
         </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.7 }}
-          style={{
-            fontSize: 'clamp(17px, 2vw, 21px)',
-            color: '#515154',
-            fontWeight: '400',
-            lineHeight: '1.6',
-            maxWidth: '560px',
-            margin: '0 auto 40px',
-          }}
-        >
-          ML engineer focused on recommendation systems, multimodal AI, and production-grade data pipelines.
-        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
           style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}
         >
           <a
-            href="https://github.com/CODING-DARSH"
+            href="https://github.com/darshvithlani"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -114,6 +177,7 @@ export default function Hero() {
               fontWeight: '500',
               letterSpacing: '-0.01em',
               transition: 'border-color 0.2s',
+              cursor: 'pointer',
             }}
             onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(0,0,0,0.5)'}
             onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(0,0,0,0.2)'}
@@ -127,16 +191,12 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
+        transition={{ delay: 1.4, duration: 0.6 }}
         style={{
           position: 'absolute',
           bottom: '40px',
           left: '50%',
           transform: 'translateX(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '8px',
         }}
       >
         <motion.div
