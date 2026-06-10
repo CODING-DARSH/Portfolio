@@ -7,7 +7,7 @@ const DELETE_SPEED = 35
 const PAUSE_AFTER_TYPE = 1600
 const PAUSE_AFTER_DELETE = 400
 
-function Typewriter() {
+function Typewriter({ started }) {
   const [display, setDisplay] = useState('')
   const [wordIndex, setWordIndex] = useState(0)
   const [phase, setPhase] = useState('typing') // typing | pausing | deleting | waiting
@@ -21,6 +21,7 @@ function Typewriter() {
   }, [])
 
   useEffect(() => {
+    if (!started) return
     const word = WORDS[wordIndex]
     const isYours = word === 'Yours.'
 
@@ -52,7 +53,7 @@ function Typewriter() {
         return () => clearTimeout(id)
       }
     }
-  }, [phase, charIndex, wordIndex])
+  }, [phase, charIndex, wordIndex, started])
 
   const currentWord = WORDS[wordIndex]
   const isYours = display === 'Yours.' || (currentWord === 'Yours.' && display.length > 0 && phase !== 'deleting')
@@ -79,7 +80,7 @@ function Typewriter() {
   )
 }
 
-export default function Hero() {
+export default function Hero({ started }) {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
@@ -137,7 +138,7 @@ export default function Hero() {
           Building AI
           <br />
           that's{' '}
-          <Typewriter />
+          <Typewriter started={started} />
         </motion.h1>
 
         <motion.div

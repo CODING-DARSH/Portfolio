@@ -28,7 +28,7 @@ export default function App() {
       >
         <Navbar />
         <main>
-          <Hero />
+          <Hero started={introDone} />
           <Stats />
           <Work />
           <About />
