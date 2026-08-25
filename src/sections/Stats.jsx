@@ -2,11 +2,12 @@ import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
 
 const stats = [
-  { value: '19M+', label: 'Behavioral records', sub: 'Synthetic dataset across 10 tables' },
-  { value: '15', label: 'ML models trained', sub: 'Across 5 production systems' },
-  { value: '97.4%', label: 'Meal occasion F1', sub: 'XGBoost on 930K test samples' },
-  { value: '99.6%', label: 'Cold-start Top-3', sub: 'Wide & Deep on new users' },
+  { value: '19M+', label: 'Behavioral records', sub: 'NARA synthetic dataset across 10 tables' },
+  { value: '97.4%', label: 'Meal occasion F1', sub: 'NARA, XGBoost on 930K test samples' },
+  { value: '92.3%', label: 'Retrieval hit rate', sub: 'FINTEL agentic RAG benchmark' },
+  { value: '1,385', label: 'SEC filings parsed', sub: 'FINTEL, across 50 public companies' },
   { value: '77%', label: 'Food-101 Top-1', sub: 'Nourish VLM, trained from scratch' },
+  { value: '11', label: 'Open source PRs', sub: '9 merged to SOUP, 2 to Qdrant FastEmbed' },
 ]
 
 export default function Stats() {

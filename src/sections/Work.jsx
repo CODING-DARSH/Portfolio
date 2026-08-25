@@ -18,6 +18,21 @@ const projects = [
     accent: '#1d1d1f',
   },
   {
+    id: 'fintel',
+    label: 'FINTEL',
+    title: 'Financial Intelligence\nAgentic RAG Platform',
+    description: 'Engineered a financial document intelligence pipeline processing 1,385 SEC EDGAR filings across 50 public companies using DOM-aware parsing and structured extraction. Built an agentic RAG system with planner-based orchestration, iterative retrieval, BGE embeddings, semantic chunking, and HDBSCAN clustering. Designed an LLM + Neo4j knowledge extraction framework pulling 15+ structured financial signal types for multi-hop graph reasoning and dynamic risk analysis.',
+    tags: ['Python', 'FastAPI', 'Neo4j', 'ChromaDB', 'PostgreSQL', 'Docker', 'LangGraph', 'Llama 3.1', 'BGE Embeddings'],
+    metrics: [
+      { v: '92.3%', l: 'Retrieval hit rate' },
+      { v: '80.1%', l: 'Recall@K' },
+      { v: '0.82 MRR', l: '26-query reasoning benchmark' },
+    ],
+    year: '2026',
+    github: 'https://github.com/CODING-DARSH/Fintel',
+    accent: '#1d1d1f',
+  },
+  {
     id: 'search',
     label: 'Multimodal Search',
     title: 'Visual Semantic\nSearch Engine',

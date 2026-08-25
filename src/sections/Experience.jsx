@@ -27,22 +27,52 @@ const experience = [
 const opensource = [
   {
     type: 'opensource',
-    role: 'Open Source Contributor',
-    org: 'Qdrant FastEmbed',
-    period: '2025–2026',
+    role: 'Open Source Author',
+    org: 'Rylox',
+    period: '2026',
     bullets: [
-      'PR fixing image preprocessing dimension-order bug with regression tests and reproducible report.',
-      'PR fixing case-insensitive CustomTextEmbedding registry KeyError.',
+      'Built and published Rylox, a repository context engine for semantic code retrieval using FAISS, BM25, Tree-sitter, and Reciprocal Rank Fusion (RRF); released on PyPI with 100+ downloads.',
     ],
+    links: [{ label: 'View on PyPI', url: 'https://pypi.org/project/rylox/' }],
   },
   {
     type: 'opensource',
     role: 'Dataset Author',
-    org: 'Hugging Face · Kaggle',
+    org: 'NutriRec India 19M',
     period: '2026',
     bullets: [
-      'Released NARA Synthetic Recommendation Dataset — 19M+ records spanning 5K users, 4.6M meal logs, 7.3M interactions.',
-      'Published 10K+ image dataset for computer vision and multimodal search applications.',
+      'Released the 19M+ row NARA Synthetic Recommendation Dataset for recommendation system research.',
+    ],
+    links: [{ label: 'View on Kaggle', url: 'https://www.kaggle.com/datasets/darshvithlani/nutrirec-india19m/data' }],
+  },
+  {
+    type: 'opensource',
+    role: 'Dataset Author',
+    org: 'Real-World Images for Computer Vision (10K)',
+    period: '2026',
+    bullets: [
+      'Published a 10K+ image dataset for computer vision and multimodal retrieval — 6,800+ downloads on Hugging Face.',
+    ],
+    links: [{ label: 'View on Kaggle', url: 'https://www.kaggle.com/datasets/darshvithlani/real-world-images-for-computer-vision-10k-139' }],
+  },
+  {
+    type: 'opensource',
+    role: 'Open Source Contributor',
+    org: 'SOUP · LLM Fine-Tuning Framework',
+    period: '2026',
+    bullets: [
+      '9 PRs merged in production releases — including a gated MCP execution security system with single-use cryptographic confirmation tokens, cross-tokenizer speculative decoding via Wasserstein-aligned ULD distillation, and an opt-in MCP execution safety gate.',
+      'Shipped tokenizer vocabulary expansion across SFT, DPO, IPO, KTO, BCO, ORPO, SimPO, and GRPO trainers, resolved security issues, and added regression tests.',
+    ],
+  },
+  {
+    type: 'opensource',
+    role: 'Open Source Contributor',
+    org: 'Qdrant FastEmbed',
+    period: '2026',
+    bullets: [
+      'PR fixing a non-square image resize bug where FastEmbed\u2019s (height, width) dimensions were passed directly to Pillow without converting to its (width, height) format; added a regression test (not yet merged).',
+      'PR fixing a case-insensitive CustomTextEmbedding lookup — postprocessing config lookup now uses the canonical resolved model name instead of the user-provided casing, preventing a KeyError; added a regression test (not yet merged).',
     ],
   },
 ]
@@ -94,6 +124,34 @@ function TimelineItem({ item, index }) {
             {b}
           </p>
         ))}
+        {item.links?.length > 0 && (
+          <div style={{ display: 'flex', gap: '16px', marginTop: '14px', paddingLeft: '16px', flexWrap: 'wrap' }}>
+            {item.links.map((l, i) => (
+              <a
+                key={i}
+                href={l.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '5px',
+                  fontSize: '14px',
+                  color: '#0071e3',
+                  fontWeight: '500',
+                  transition: 'opacity 0.2s',
+                }}
+                onMouseEnter={e => e.currentTarget.style.opacity = 0.7}
+                onMouseLeave={e => e.currentTarget.style.opacity = 1}
+              >
+                {l.label}
+                <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                  <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     </motion.div>
   )
