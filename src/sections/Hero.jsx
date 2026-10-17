@@ -148,7 +148,7 @@ export default function Hero({ started }) {
           style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}
         >
           <a
-            href="https://github.com/darshvithlani"
+            href="https://github.com/CODING-DARSH"
             target="_blank"
             rel="noopener noreferrer"
             style={{
